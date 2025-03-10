@@ -22,6 +22,6 @@ for result in results:
             cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 2)
 
 print("Detected people coordinates:", people_centers)
-output_image_path = "A_image_detected.jpg"
+output_image_path = image_path.replace('.jpg', '_')+'yolo8x_result.jpg'
 cv2.imwrite(output_image_path, image)
 print(f"Detection result saved as: {output_image_path}")

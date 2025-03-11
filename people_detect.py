@@ -3,10 +3,10 @@ import cv2
 import numpy as np
 
 model = YOLO("yolov8x.pt")
-image_path = "test1.jpg"
+image_path = "test2.jpg"
 image = cv2.imread(image_path)
 
-results = model(image)
+results = model(image, conf=0.09)
 
 people_centers = []
 for result in results:
@@ -22,6 +22,6 @@ for result in results:
             cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 2)
 
 print("Detected people coordinates:", people_centers)
-output_image_path = image_path.replace('.jpg', '_')+'yolo8x_result.jpg'
+output_image_path = image_path.replace('.jpg', '_')+'yolov8x_result.jpg'
 cv2.imwrite(output_image_path, image)
 print(f"Detection result saved as: {output_image_path}")

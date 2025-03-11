@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 import os
 
-image_A_path = "test2_yolov8x_result.jpg" 
-image_B_path = "floor.jpg"
+image_A_path = "result/people/test2_yolov8x_result.jpg" 
+image_B_path = "image/floor.jpg"
 
 image_A = cv2.imread(image_A_path)
 image_B = cv2.imread(image_B_path)
@@ -45,6 +45,8 @@ people_B = transform_points(H, people_A)
 for (x, y) in people_B:
     cv2.circle(image_B, (x, y), 5, (0, 0, 255), -1)  # 빨간 점
 
-output_path = "floor_mapped2.jpg"
+save_file_name = image_A_path.replace('result','').replace('/people/','')
+save_file_name = save_file_name.split('_')[0]
+output_path = "./result/homo/"+save_file_name+"_floor_mapped.jpg"
 cv2.imwrite(output_path, image_B)
 print(f"Transformed image saved to: {output_path}")
